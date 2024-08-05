@@ -1,0 +1,170 @@
+{
+	"info": {
+		"_postman_id": "b9d81fad-ae25-4989-bc52-8e56156f1cf7",
+		"name": "ICE MOBILE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22695901"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"TOKEN\",pm.response.json().access_token)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Username\" : \"sunquest\",\r\n    \"Password\" : \"ice4dmin\",\r\n    \"grant_type\":\"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://icevt-opennet-1.uk.sunquestinfo.com/proxy/api/Users/token",
+					"protocol": "http",
+					"host": [
+						"icevt-opennet-1",
+						"uk",
+						"sunquestinfo",
+						"com"
+					],
+					"path": [
+						"proxy",
+						"api",
+						"Users",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New patient",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var locationHeader = pm.response.headers.get('Location');\r",
+							"pm.environment.set(\"locationvalue\",locationHeader);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 2AWryJQYDaG6J_Gm6qj0KidZkV2CTVnU3r-SyrbZUTApdQ-JJm2uFV_2Jylb6J-7-_FRBzeOj-fUcYNdVV77bH5MboQhjArIRTLEsCzS92qcuk4kb2yttjh4wgyS47fCl_5Jvwp-8VKTRq-uuRE6zyZnrq-vyLgdL8ItMAeRFhhKf_PqdD2FmR6pOFSiODO0vzZ4zGhapkME2qWFwbatE2SSC2NqzMpN4lk47ezRR2f1_3A5Lck690_5euQ0wb4-sGhctGsigyF86EirrKsHn3MuMU7fQZjV_bmkj7fbf8FLh9_27jXqWM1-S6kZUqTvwRDpAsXclg0weTaJArLovsJvpQHuffqgZYv5WJY0p99UdJt-Ga38nQoN5Qodf3MCMSQHWkPvheENZw6whLlU8cb3sAlNAqSztOMAtmx0PX_gf1QWGy6Ec5aF_7BbzPw1a-vZb-P9PpW40cRdAGzmJpfsP5xEy36ttOHl7xXEJeS0GEelaNyWJO1fy_0SH9e9q99PHclOFZGBLgVIm67OGhOSM-cZXjbBKKp3gfCYx0kx4wYROoQPpgbUzsfw6D3mggQUuLWUfRiLacDGROzA-7U6USUEII0d-a2vESjMzPTZQyL8dDhT7KRLGF3O_pNt8Jc2y6mC5YJRg9L8uPaHomXvFNHCoLt8Wpz98S8VUCimEOymDKT-v3wr8WA42gZCRlCr1VcNuMJRzAOVZBmnDjc-nRLcCj553b1eqIXHzwurt6vdcylPJrOJ7oT9HrICRgWKFjqavCgIcJoLV0fl3vGmeNb8OEWARBe9UFjV83JQ8HZqYkOzPHZ7HgIxZ770wC7ELYNGdw1fchX5PTZ6lB2OSIveZZEjFIsiTwslvbM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"address\":{\"lines\":[\"TBAc\"],\"postCode\":\"TBDC\"},\"dateOfBirth\":\"2003-05-01T00:00:00.000Z\",\"dateOfDeath\":null,\"ethnicGroupCode\":null,\"gender\":1,\"gpNationalCode\":\"\",\"gpPracticeNationalCode\":\"\",\"isDeceased\":false,\"languageId\":null,\"localCodes\":[],\"localIdentifiers\":[],\"maritalStatusId\":0,\"name\":{\"familyName\":\"eyu\",\"givenName\":\"dkj\"},\"nationalCodes\":[],\"nationalIdentifiers\":[],\"smokerInformationId\":9}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://icevt-opennet-1.uk.sunquestinfo.com/proxy/api/patients",
+					"protocol": "http",
+					"host": [
+						"icevt-opennet-1",
+						"uk",
+						"sunquestinfo",
+						"com"
+					],
+					"path": [
+						"proxy",
+						"api",
+						"patients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View patient",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Set a delay in milliseconds\r",
+							"const delayInMilliseconds = 5000; // 5 seconds\r",
+							"\r",
+							"function sleep(milliseconds) {\r",
+							"    return new Promise(resolve => setTimeout(resolve, milliseconds));\r",
+							"}\r",
+							"\r",
+							"// Delay the request\r",
+							"sleep(delayInMilliseconds).then(() => {\r",
+							"    console.log(`Waited for ${delayInMilliseconds} milliseconds.`);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{locationvalue}}",
+					"host": [
+						"{{locationvalue}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
